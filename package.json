@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "private": true,
+  "name": "hanamibot",
+  "type": "module",
+  "scripts": {
+    "start": "bun src/index.ts"
+  },
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^1.5.0",
+    "@types/ms": "^0.7.34",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "bun-types": "latest",
+    "eslint": "^8.55.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0"
+  },
+  "dependencies": {
+    "@lilybird/handlers": "^0.2.1",
+    "@lilybird/jsx": "^0.2.0",
+    "lilybird": "^0.4.0",
+    "ms": "^2.1.3"
+  }
+}
