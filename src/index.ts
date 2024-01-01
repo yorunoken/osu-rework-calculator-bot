@@ -6,6 +6,7 @@ process.on("unhandledRejection", console.error);
 process.on("uncaughtException", console.error);
 
 const listeners = await createHandler({
+    prefix: "!",
     dirs: {
         messageCommands: `${import.meta.dir}/message-commands`,
         listeners: `${import.meta.dir}/listeners`

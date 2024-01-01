@@ -1,4 +1,6 @@
-interface Scores {
+import type { Channel } from "lilybird";
+
+export interface Scores {
     BeatmapId: number;
     BeatmapName: string;
     Combo: number;
@@ -16,4 +18,11 @@ export interface Details {
     LocalPp: number;
     PlaycountPp: number;
     Scores: Array<Scores>;
+}
+
+export interface CacheMapInterface {
+    page: number;
+    data: Details;
+    channel: Channel;
+    authorId: string;
 }

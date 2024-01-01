@@ -1,7 +1,6 @@
 {
   "version": "1.0.0",
-  "private": true,
-  "name": "hanamibot",
+  "name": "rework-calculator-bot",
   "type": "module",
   "scripts": {
     "start": "NODE_ENV=production bun src/index.ts"
