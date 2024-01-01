@@ -7,7 +7,7 @@ process.on("uncaughtException", console.error);
 
 const listeners = await createHandler({
     dirs: {
-        slashCommands: `${import.meta.dir}/commands`,
+        messageCommands: `${import.meta.dir}/message-commands`,
         listeners: `${import.meta.dir}/listeners`
     }
 });

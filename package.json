@@ -4,7 +4,7 @@
   "name": "hanamibot",
   "type": "module",
   "scripts": {
-    "start": "bun src/index.ts"
+    "start": "NODE_ENV=production bun src/index.ts"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^1.5.0",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@lilybird/handlers": "^0.2.1",
     "@lilybird/jsx": "^0.2.0",
-    "lilybird": "^0.4.0",
+    "lilybird": "^0.4.1",
     "ms": "^2.1.3"
   }
 }
