@@ -8,18 +8,18 @@ To start building, you either need to be on a UNIX operating system (Linux, MacO
 2. Install npm.
 
 3. Clone the repository.
-   - `git clone https://github.com/yorunoken/hanamibot`
+   - `git clone https://github.com/yorunoken/rework-calculator-bot`
 
 4. Navigate inside the directory and install the dev, and normal dependencies.
    - `cd rework-calculator-bot && npm install -D`
 
-5. Follow [this tutorial](https://cdn.discordapp.com/attachments/1116047971583262850/1191379178147295292/How_to_set_up_rework_calculator_and_also_simulate_scores2.txt?ex=65a53952&is=6592c452&hm=73c2958fd6c8f22d8a64cc6744f3783c8f751b16fb808d56e728faf95a483a52&) to install the calculator
+5. Follow [this tutorial](#downloading-and-installing-the-calculator) to install the calculator
 
-6. Fill out `.env.example` with your API keys (see below to see how) and delete the `.example` off of it.
+6. Fill out `.env.example` with your API keys [(see below to see how)](#getting-api-keys) and delete the `.example` off of it.
 
 7. You can use `bun start` to start the bot and test your code.
 
-## Getting API keys
+## Getting the API keys
 
 You need to fill `.env` with the approriate API keys to make the bot work. Here's how:
 
@@ -42,3 +42,15 @@ You need to fill `.env` with the approriate API keys to make the bot work. Here'
    - Edit your newly made application.
 
    - Copy its Client ID and Client secret and you're good to go.
+
+## Downloading and installing the calculator
+
+First of all, you must have dotnet SDK version 6.0. you can download it [here](https://dotnet.microsoft.com/download/dotnet/6.0).
+
+Run `bun setup`. It needs two arguments: `owner`, `branch`. Here's an example for `Xexxar`'s `aimRewriteTap` branch:
+    
+```bun run setup Xexxar aimRewriteTap```
+
+if no arguments are provided, it defaults to Xexxar/aimRewriteTap.
+
+If anything goes wrong, you can do it manually by following [this tutorial](https://cdn.discordapp.com/attachments/1116047971583262850/1191379178147295292/How_to_set_up_rework_calculator_and_also_simulate_scores2.txt) or simply giving me a shout at @yorunoken on Discord.
