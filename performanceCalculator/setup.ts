@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
+
 import { sleep } from "bun";
 import { exists } from "fs/promises";
 
@@ -12,6 +13,13 @@ async function checkDir(name: string): Promise<void> {
 
 // This is the main asynchronous function responsible for setting up the environment for the osu! bot.
 async function main(): Promise<void> {
+    // Check for `update` argument to update the osu! repository.
+    if (process.argv[2] === "update") {
+        await exec("git pull", "./performanceCalculator/osu", true);
+        console.log("\nUpdated osu! repository successfully!");
+        return;
+    }
+
     // Destructuring command line arguments to specify the owner and branch for cloning the repositories.
     const [owner = "Xexxar", branch = "aimRewriteTap"] = process.argv.slice(2);
 

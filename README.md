@@ -51,6 +51,8 @@ Run `bun setup`. It needs two arguments: `owner`, `branch`. Here's an example fo
     
 ```bun run setup Xexxar aimRewriteTap```
 
-if no arguments are provided, it defaults to Xexxar/aimRewriteTap.
+If no arguments are provided, it defaults to Xexxar/aimRewriteTap.
+
+To the project, if a new version of the rework is out, run `bun update`.
 
 If anything goes wrong, you can do it manually by following [this tutorial](https://cdn.discordapp.com/attachments/1116047971583262850/1191379178147295292/How_to_set_up_rework_calculator_and_also_simulate_scores2.txt) or simply giving me a shout at @yorunoken on Discord.
