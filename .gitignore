@@ -1,3 +1,4 @@
 node_modules/
 .env
-performanceCalculator/
+osu/
+osu-tools
