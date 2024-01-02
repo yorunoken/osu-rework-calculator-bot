@@ -28,6 +28,8 @@ async function main(): Promise<void> {
 
     await exec("git clone https://github.com/ppy/osu-tools", "./performanceCalculator", true);
     await exec(`git clone https://github.com/${owner}/osu`, "./performanceCalculator", true);
+    console.log("Creating Scores directory...");
+    await exec("mkdir scores", "./performanceCalculator", false);
 
     console.log("\nSetting branch...");
     await exec(`git checkout ${branch}`, "./performanceCalculator/osu", true);
