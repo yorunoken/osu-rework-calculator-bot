@@ -107,6 +107,7 @@ async function processQueue(): Promise<void> {
             break;
         }
         idx++;
+        await sleep(1000);
     }
 
     // Shift the processed user from the queue.
