@@ -57,7 +57,7 @@ export function prepareDiscordMessage(cacheData: CacheMapInterface | undefined):
         const missEmoji = "<:hit00:1061254490075955231>";
 
         const text = `\`#${idx + 1}\` [**${score.BeatmapName}**](https://osu.ppy.sh/b/${score.BeatmapId}})
-        Live/Local pp: ${pp} (${diff}) • \`+${score.Mods.join("")}\` • \`${score.Combo.toLocaleString()}x\` • (${score.Accuracy.toFixed(2)}%) • ${score.MissCount}${missEmoji}`;
+        Live/Local pp: ${pp} (${diff}) • \`+${score.Mods.join("") || "NM"}\` • \`${score.Combo.toLocaleString()}x\` • (${score.Accuracy.toFixed(2)}%) • ${score.MissCount}${missEmoji}`;
         descriptionArray.push(text);
     }
 
