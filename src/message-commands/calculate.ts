@@ -15,7 +15,7 @@ async function processScores(userId: string, channel: Channel, message: Message,
     // Reads the beatmap file
     let data: Details;
     try {
-        data = JSON.parse(await Bun.file(`./performanceCalculator/osu-tools/PerformanceCalculator/${userId}.txt`).text()) as Details;
+        data = await import(`../../performanceCalculator/scores/${userId}.json`) as Details;
     } catch (e) {
         await newMsg.edit("A wrong user Id was given, aborting task.");
         return;
@@ -53,11 +53,12 @@ export function prepareDiscordMessage(cacheData: CacheMapInterface | undefined):
 
         const ppDifference = (score.LocalPp - score.LivePp).toFixed(2);
         const diff = +ppDifference > 0 ? `+${ppDifference}` : ppDifference;
-        const pp = `**${score.LivePp.toFixed(2)}pp**-**${score.LocalPp.toFixed(2)}pp**`;
+        const pp = `\`${score.LivePp.toFixed(2)}pp\`-\`${score.LocalPp.toFixed(2)}pp\``;
         const missEmoji = "<:hit00:1061254490075955231>";
 
         const text = `\`#${idx + 1}\` [**${score.BeatmapName}**](https://osu.ppy.sh/b/${score.BeatmapId}})
-        Live/Local pp: ${pp} (${diff}) • \`+${score.Mods.join("") || "NM"}\` • \`${score.Combo.toLocaleString()}x\` • (${score.Accuracy.toFixed(2)}%) • ${score.MissCount}${missEmoji}`;
+        **Live/Local pp:** ${pp} (${diff}) • \`+${score.Mods.join("") || "NM"}\` • \`${score.Combo.toLocaleString()}x\`
+        **Accuracy**: \`${score.Accuracy.toFixed(2)}%\` • **Misses:** \`${score.MissCount}\`${missEmoji} **Position Change:** \`${score.PositionChange}\``;
         descriptionArray.push(text);
     }
 
@@ -94,7 +95,7 @@ async function processQueue(): Promise<void> {
     // Uses Bun's Spawn API to initiate score calculation
     const clientId = process.env.OSU_CLIENT_ID;
     const clientSecret = process.env.OSU_CLIENT_SECRET;
-    const subprocess = Bun.spawn(["dotnet", "run", "--", "profile", userId, clientId, clientSecret, "-o", `${userId}.txt`, "-j"], {
+    const subprocess = Bun.spawn(["dotnet", "run", "--", "profile", userId, clientId, clientSecret, "-o", `../../scores/${userId}.json`, "-j"], {
         cwd: "./performanceCalculator/osu-tools/PerformanceCalculator", // Set the working directory
         stdout: "pipe" // Pipes the stdout so it can be read from
     });
@@ -147,7 +148,7 @@ async function run(message: Message): Promise<void> {
 
         const lineInThisGuild = existingEntries.findIndex((x) => x[userId][1].guildId === message.guildId) !== -1;
         if (lineInThisGuild) {
-            await channel.send(`The player with ID ${userId} is already in line for this guild.`);
+            await channel.send(`The player with ID ${userId} is already in line for this guild. (#${queuePlacement}, ${approxQueueTime})`);
             return;
         }
         await channel.send(`The player with ID ${userId} is already in line for another guild, adding to queue. (#${queuePlacement}, ${approxQueueTime})`);
