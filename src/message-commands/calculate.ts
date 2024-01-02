@@ -129,25 +129,33 @@ async function run(message: Message): Promise<void> {
     }
 
     // Checks if the user is already in the queue.
-
     if (queue.some((entry) => Object.keys(entry)[0] === userId)) {
-        await channel.send(`The player with ID ${userId} is already in line. (#${queue.findIndex((entry) => Object.keys(entry)[0] === userId)})`);
+        const existingEntries = queue.filter((entry) => Object.keys(entry)[0] === userId);
+        if (existingEntries.length === 0) return;
+
+        const queuePlacement = queue.findIndex((entry) => Object.keys(entry)[0] === userId) + 1;
+        const queueTime = queuePlacement * Math.floor((Math.random() + 1) * 36);
+        const approxQueueTime = queueTime > 60 ? `${(queueTime / 60).toFixed(2)} minutes` : `${queueTime} seconds`;
+
+        const lineInThisGuild = existingEntries.findIndex((x) => x[userId][1].guildId === message.guildId) !== -1;
+        if (lineInThisGuild) {
+            await channel.send(`The player with ID ${userId} is already in line for this guild.`);
+            return;
+        }
+        await channel.send(`The player with ID ${userId} is already in line for another guild, adding to queue. (#${queuePlacement}, ${approxQueueTime})`);
+
+        queue.push({ [userId]: [channel, message] });
+
         return;
     }
+
+    console.log(queue);
 
     // Add the user to the queue.
     queue.push({ [userId]: [channel, message] });
 
-    // If it's the first user in the queue, start processing.
-    if (queue.length === 1)
-        await processQueue();
-    else {
-        await channel.send(`The player with ID ${userId} is already in line. (#${queue.findIndex((entry) => {
-            console.log(entry);
-            console.log(Object.keys(entry)[0]);
-            return Object.keys(entry)[0] === userId;
-        })})`);
-    }
+    // Start processing.
+    await processQueue();
 }
 
 export default {
