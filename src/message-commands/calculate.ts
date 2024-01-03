@@ -2,7 +2,6 @@
 /* eslint-disable no-await-in-loop */
 import { cacheMap } from "../cache.ts";
 import { Embed, Button, ActionRow } from "@lilybird/jsx";
-import { sleep } from "bun";
 import { ButtonStyle } from "lilybird";
 import type { ActionRowStructure, Channel, EmbedStructure, Message } from "lilybird";
 import type { CacheMapInterface, Details } from "../types/scoresTypes.ts";
@@ -107,8 +106,6 @@ async function processQueue(): Promise<void> {
         if (done || text.includes("\"Username\"")) {
             console.log("DONE!");
             await processScores(userId, channel, message, newMsg);
-            await sleep(1000);
-            await newMsg.delete();
             break;
         }
         idx++;
