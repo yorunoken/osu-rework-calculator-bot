@@ -82,11 +82,6 @@ async function processQueue(): Promise<void> {
     const [userId] = Object.keys(data);
     const [channel, message] = data[userId];
 
-    if (isNaN(+userId)) {
-        await channel.send(`\`${userId}\` is not a valid user ID. Check [the guide](https://discord.com/channels/1129202618053435542/1191561884026015824/1191780350809083925) to see how to get your user id.`);
-        return;
-    }
-
     const proccessingMessage = `<@${message.author.id}> proccessing user with ID: ${userId}`;
 
     // Notifies that the user with ID is being processed.
@@ -134,6 +129,11 @@ async function run(message: Message): Promise<void> {
     if (!userId) {
         await channel.send(`You need an osu!user ID or a username to use this command.
         Check [the guide](https://discord.com/channels/1129202618053435542/1191561884026015824/1191780350809083925) to see how to get it.`);
+        return;
+    }
+
+    if (isNaN(+userId)) {
+        await channel.send(`\`${userId}\` is not a valid user ID. Check [the guide](https://discord.com/channels/1129202618053435542/1191561884026015824/1191780350809083925) to see how to get your user id.`);
         return;
     }
 
