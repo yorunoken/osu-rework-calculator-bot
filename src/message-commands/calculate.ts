@@ -17,6 +17,7 @@ async function processScores(userId: string, channel: Channel, message: Message,
     try {
         data = await import(`../../performanceCalculator/scores/${userId}.json`) as Details;
     } catch (e) {
+        console.error(e);
         await newMsg.edit("A wrong user Id was given, aborting task.");
         return;
     }
