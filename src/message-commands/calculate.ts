@@ -58,7 +58,7 @@ export function prepareDiscordMessage(cacheData: CacheMapInterface | undefined):
 
         const text = `\`#${idx + 1}\` [**${score.BeatmapName}**](https://osu.ppy.sh/b/${score.BeatmapId}})
         **Live/Local pp:** ${pp} (${diff}) • \`+${score.Mods.join("") || "NM"}\` • \`${score.Combo.toLocaleString()}x\`
-        **Accuracy**: \`${score.Accuracy.toFixed(2)}%\` • **Misses:** \`${score.MissCount}\`${missEmoji} **Position Change:** \`${score.PositionChange}\``;
+        **Accuracy**: \`${score.Accuracy.toFixed(2)}%\` • **Misses:** \`${score.MissCount}\`${missEmoji} • **Position Change:** \`${score.PositionChange}\``;
         descriptionArray.push(text);
     }
 

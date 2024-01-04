@@ -35,7 +35,7 @@ async function main(): Promise<void> {
     await exec(`git checkout ${branch}`, "./performanceCalculator/osu", true);
 
     console.log("Initializing osu-tools...");
-    await exec("bash UseLocalOsu.sh", "./performanceCalculator/osu-tools", false);
+    await exec("bash UseLocalOsu.sh", "./performanceCalculator/osu-tools", true);
 
     console.log("\nSetup complete! You can now run the bot using `bun start`.");
 
