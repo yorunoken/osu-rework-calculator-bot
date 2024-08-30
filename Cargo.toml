@@ -1,0 +1,6 @@
+[package]
+name = "osu-rework-calculator-bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
